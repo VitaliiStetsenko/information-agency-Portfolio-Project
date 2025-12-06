@@ -1,0 +1,47 @@
+{% extends "layouts/base_sections.html" %}
+
+{% block content %}
+<div class="container py-5" style="margin-top: 90px;">
+
+    <h1 class="fw-bold text-dark mb-4">
+        {{ redactor.first_name }} {{ redactor.last_name }}
+    </h1>
+
+    <p class="mb-2">
+        <strong class="text-primary">Username:</strong> {{ redactor.username }}
+    </p>
+
+    <p class="mb-2">
+        <strong class="text-primary">Years of experience:</strong>
+        {{ redactor.years_of_experience }}
+    </p>
+
+    <hr>
+
+    <h4 class="fw-bold text-dark">Newspapers:</h4>
+
+    {% if redactor.newspapers.exists %}
+        {% for newspaper in redactor.newspapers.all %}
+            <a href="{% url 'newspaper:newspaper-detail' newspaper.id %}"
+               class="badge bg-info text-dark me-2 px-3 py-2 rounded-pill text-decoration-none">
+               {{ newspaper.title }}
+            </a>
+        {% endfor %}
+    {% else %}
+        <p class="text-muted">No newspapers assigned yet.</p>
+    {% endif %}
+
+    <div class="d-flex gap-3 mt-4">
+        <a href="{% url 'newspaper:redactor-list' %}" class="btn btn-outline-dark rounded-pill px-4">
+            Back
+        </a>
+      {% if user == redactor%}
+         <a href="{% url 'newspaper:redactor-update' user.id %}"
+           class="btn btn-primary px-4 rounded-pill">
+            Edit
+        </a>
+      {% endif %}
+    </div>
+
+</div>
+{% endblock %}
