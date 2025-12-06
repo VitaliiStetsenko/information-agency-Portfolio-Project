@@ -41,12 +41,11 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 15
 
     def get_queryset(self):
-        queryset = Newspaper.objects.prefetch_related("publishers","topics")
+        queryset = Newspaper.objects.prefetch_related("publishers", "topics")
         title = self.request.GET.get("title")
         if title:
             return queryset.filter(title__icontains=title)
         return queryset
-
 
     def get_context_data(self, **kwargs):
         context = super(NewspaperListView, self).get_context_data(**kwargs)
@@ -57,6 +56,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
             }
         )
         return context
+
 
 class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Newspaper
@@ -126,7 +126,6 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
     paginate_by = 10
 
-
     def get_queryset(self):
         queryset = get_user_model().objects.prefetch_related("newspapers")
         username = self.request.GET.get("username")
@@ -153,7 +152,6 @@ class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
     model = get_user_model()
     form_class = RedactorCreateForm
     success_url = reverse_lazy("newspaper:redactor-list")
-
 
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):

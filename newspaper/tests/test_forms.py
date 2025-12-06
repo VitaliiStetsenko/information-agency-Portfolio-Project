@@ -17,14 +17,22 @@ class FormsTests(TestCase):
         }
         form = RedactorCreateForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data["username"], form_data["username"])
-        self.assertEqual(form.cleaned_data["first_name"], form_data["first_name"])
-        self.assertEqual(form.cleaned_data["last_name"], form_data["last_name"])
+        self.assertEqual(
+            form.cleaned_data["username"],
+            form_data["username"]
+        )
+        self.assertEqual(
+            form.cleaned_data["first_name"],
+            form_data["first_name"]
+        )
+        self.assertEqual(
+            form.cleaned_data["last_name"],
+            form_data["last_name"]
+        )
         self.assertEqual(
             form.cleaned_data["years_of_experience"],
             form_data["years_of_experience"],
         )
-
 
     def test_redactor_update_form_with_extra_fields(self):
         form_data = {
@@ -34,12 +42,23 @@ class FormsTests(TestCase):
             "first_name": "RED",
             "last_name": "ACTOR",
             "years_of_experience": 10,
+
         }
         form = RedactorUpdateForm(data=form_data)
         self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data["username"], form_data["username"])
-        self.assertEqual(form.cleaned_data["first_name"], form_data["first_name"])
-        self.assertEqual(form.cleaned_data["last_name"], form_data["last_name"])
+        self.assertEqual(
+            form.cleaned_data["username"],
+            form_data["username"]
+
+        )
+        self.assertEqual(
+            form.cleaned_data["first_name"],
+            form_data["first_name"]
+        )
+        self.assertEqual(
+            form.cleaned_data["last_name"],
+            form_data["last_name"]
+        )
         self.assertEqual(
             form.cleaned_data["years_of_experience"],
             form_data["years_of_experience"],
@@ -62,8 +81,19 @@ class FormsTests(TestCase):
         }
         self.client.post(reverse("newspaper:redactor-create"), data=form_data)
 
-        new_user = get_user_model().objects.get(username=form_data["username"])
+        new_user = get_user_model().objects.get(
+            username=form_data["username"]
+        )
 
-        self.assertEqual(new_user.first_name, form_data["first_name"])
-        self.assertEqual(new_user.last_name, form_data["last_name"])
-        self.assertEqual(new_user.years_of_experience, form_data["years_of_experience"])
+        self.assertEqual(
+            new_user.first_name,
+            form_data["first_name"]
+        )
+        self.assertEqual(
+            new_user.last_name,
+            form_data["last_name"]
+        )
+        self.assertEqual(
+            new_user.years_of_experience,
+            form_data["years_of_experience"]
+        )

@@ -4,7 +4,9 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from newspaper.forms import NewspaperSearchForm, TopicSearchForm, RedactorSearchForm
+from newspaper.forms import (NewspaperSearchForm,
+                             TopicSearchForm,
+                             RedactorSearchForm)
 from newspaper.models import Topic, Newspaper
 
 

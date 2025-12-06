@@ -20,6 +20,7 @@ class PublicListViewTest(TestCase):
         res = self.client.get(reverse("newspaper:redactor-list"))
         self.assertNotEqual(res.status_code, 200)
 
+
 class PrivateListViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -31,7 +32,6 @@ class PrivateListViewTest(TestCase):
             years_of_experience=9,
         )
         self.client.force_login(self.user)
-
 
     def test_private_newspaper_list(self):
         res = self.client.get(reverse("newspaper:newspaper-list"))

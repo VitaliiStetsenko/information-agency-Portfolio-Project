@@ -16,7 +16,10 @@ class RedactorCreateForm(UserCreationForm):
         )
 
     def clean_years_of_experience(self):
-        return validate_years_of_experience(self.cleaned_data["years_of_experience"])
+        return validate_years_of_experience(
+            self.cleaned_data["years_of_experience"]
+        )
+
 
 class NewspaperForm(forms.ModelForm):
     publishers = forms.ModelMultipleChoiceField(
@@ -43,7 +46,9 @@ class RedactorUpdateForm(forms.ModelForm):
         )
 
     def clean_years_of_experience(self):
-        return validate_years_of_experience(self.cleaned_data["years_of_experience"])
+        return validate_years_of_experience(
+            self.cleaned_data["years_of_experience"]
+        )
 
 
 class NewspaperSearchForm(forms.Form):
