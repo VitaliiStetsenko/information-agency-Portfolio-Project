@@ -1,0 +1,26 @@
+{% extends 'layouts/base_sections.html' %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+<div class="page-wrapper">
+
+    <h1 class="text-center page-title">{{ view.object|default:"Add Newspaper" }}</h1>
+
+    <div class="form-wrapper">
+        <div class="card shadow-lg p-4 rounded-4 form-card">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-end mt-3">
+                    <a href="{% url 'newspaper:newspaper-list' %}" class="btn btn-outline-dark px-4 rounded-pill">
+                        Back
+                    </a>
+                    <button class="btn btn-primary px-4">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
