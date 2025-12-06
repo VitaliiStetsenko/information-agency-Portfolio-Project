@@ -1,0 +1,94 @@
+{% extends "layouts/base_sections.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center"
+     style="min-height: 80vh; background: #f8f9fa;">
+
+    <div class="card shadow-lg p-5 border-0 rounded-4"
+         style="width: 100%; max-width: 500px;">
+
+        <h2 class="fw-bold text-dark mb-2 text-center">Welcome</h2>
+        <p class="text-muted mb-4 text-center">Please login to continue</p>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="form-group mb-4">
+                <label class="fw-semibold mb-2">Username</label>
+                <input type="text"
+                       name="username"
+                       class="login-input"
+                       placeholder="Enter your username"
+                       required />
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-4">
+                <label class="fw-semibold mb-2">Password</label>
+                <input type="password"
+                       name="password"
+                       class="login-input"
+                       placeholder="Enter your password"
+                       required />
+            </div>
+
+            {% if form.errors %}
+            <div class="alert alert-danger py-2 rounded-pill text-center">
+                Invalid login details. Please try again.
+            </div>
+            {% endif %}
+
+            <!-- Login Button -->
+            <button class="btn btn-pink w-100 rounded-pill py-3 fw-semibold shadow-sm">
+                LOG IN
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+
+.login-input {
+    width: 100%;
+    border-radius: 999px !important;
+    background-color: #eef3ff !important;
+    border: 2px solid #dfc1fb !important;
+    height: 48px;
+    padding: 0 20px;
+    transition: 0.25s ease;
+}
+
+
+.login-input:focus {
+    border-color: #c700f6 !important;
+    box-shadow: 0 0 10px rgba(199, 0, 246, 0.25) !important;
+    outline: none !important;
+}
+
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #eef3ff inset !important;
+    border-radius: 999px !important;
+}
+
+
+.btn-pink {
+    background: linear-gradient(90deg, #d501f3, #ff0099);
+    color: #fff;
+    transition: 0.3s ease;
+}
+.btn-pink:hover {
+    filter: brightness(0.9);
+    color: #fff;
+}
+
+.card {
+    animation: fadeIn .55s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+{% endblock %}
