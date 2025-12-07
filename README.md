@@ -39,6 +39,8 @@ python manage.py runserver
 
 ##  Test Login
 
+- https://information-agency-ioa2.onrender.com
 - login: user
 - password: user12345
+
 
