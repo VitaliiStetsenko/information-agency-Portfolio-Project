@@ -35,3 +35,9 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+```
+
+##  Test Login
+
+login: user
+password: user12345
