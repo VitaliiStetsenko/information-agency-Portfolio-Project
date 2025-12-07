@@ -39,5 +39,6 @@ python manage.py runserver
 
 ##  Test Login
 
-login: user
-password: user12345
+- login: user
+- password: user12345
+
