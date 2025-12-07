@@ -1,0 +1,32 @@
+{% extends "layouts/base_sections.html" %}
+
+{% block content %}
+<div class="container py-5" style="margin-top: 90px;">
+
+    <h1 class="fw-bold text-dark mb-4">
+        {{ topic.name }}
+    </h1>
+
+    <p class="text-secondary fs-5 mb-4">{{ topic.description }}</p>
+
+    <h4 class="fw-bold text-dark mb-3">Newspapers:</h4>
+
+    {% if topic.newspapers.exists %}
+        {% for newspaper in topic.newspapers.all %}
+            <a href="{% url 'newspaper:newspaper-detail' newspaper.id %}"
+               class="badge bg-primary me-2 px-3 py-2 rounded-pill text-decoration-none">
+               {{ newspaper.title }}
+            </a>
+        {% endfor %}
+    {% else %}
+        <p class="text-muted">No newspapers in this topic yet.</p>
+    {% endif %}
+
+    <div class="d-flex gap-3 mt-4">
+        <a href="{% url 'newspaper:topic-list' %}" class="btn btn-outline-dark rounded-pill px-4">
+            Back
+        </a>
+    </div>
+
+</div>
+{% endblock %}

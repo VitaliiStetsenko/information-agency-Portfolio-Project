@@ -1,0 +1,88 @@
+{% extends "layouts/base_sections.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 110px;">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-dark">Topics</h1>
+        <a href="{% url 'newspaper:topic-create' %}"
+           class="btn btn-success rounded-pill px-4 py-2 fw-semibold shadow-sm">
+            + ADD TOPIC
+        </a>
+    </div>
+
+     <form method="get" class="d-flex gap-3 mb-4">
+        <input
+            type="text"
+            name="name"
+            value="{{ request.GET.name }}"
+            class="form-control rounded-pill px-3 search-input"
+            placeholder="Search topic by name"
+        >
+        <button class="btn btn-secondary rounded-pill px-4 fw-semibold search-btn">
+            <span class="search-icon">🔎</span>
+            <span>SEARCH</span>
+        </button>
+
+    </form>
+
+    <div class="table-responsive shadow-sm">
+        <table class="table align-middle bg-white">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for topic in topic_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'newspaper:topic-detail' topic.id %}"
+                               class="text-decoration-none text-primary fw-semibold">
+                                {{ topic.name }}
+                            </a>
+                        </td>
+
+                        <td>{{ topic.description|truncatechars:60 }}</td>
+
+                        <td class="text-center">
+                            <a href="{% url 'newspaper:topic-update' topic.id %}"
+                               class="btn btn-pink rounded-pill px-3 py-1 fw-semibold me-2">
+                                EDIT
+                            </a>
+
+                            <a href="{% url 'newspaper:topic-delete' topic.id %}"
+                               class="btn btn-danger rounded-pill px-3 py-1 fw-semibold">
+                                DELETE
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="3" class="text-center text-muted py-4">No topics found</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include "includes/pagination.html" %}
+</div>
+
+<style>
+.btn-pink { background: #e721ff; color: white; }
+.btn-pink:hover { background: #b015cc; color: white; }
+.search-input { height: 48px;}
+.search-btn {
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 20px;
+    line-height: 1;
+}
+</style>
+{% endblock %}

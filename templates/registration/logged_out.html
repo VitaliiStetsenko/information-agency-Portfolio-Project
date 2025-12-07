@@ -1,0 +1,39 @@
+{% extends "layouts/base_sections.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center"
+     style="min-height: 80vh; background: #f8f9fa;">
+
+    <div class="card shadow-lg p-5 border-0 rounded-4 text-center"
+         style="width: 100%; max-width: 480px;">
+
+        <h2 class="fw-bold text-dark mb-3">You have been logged out.</h2>
+        <p class="text-muted mb-4">We hope to see you again soon!</p>
+        <a href="{% url 'login' %}"
+           class="btn btn-pink rounded-pill py-3 w-100 fw-semibold">
+            LOG IN AGAIN
+        </a>
+    </div>
+</div>
+
+<style>
+.btn-pink {
+    background: linear-gradient(90deg, #d501f3, #ff0099);
+    color: #fff;
+    transition: 0.3s ease;
+}
+.btn-pink:hover {
+    filter: brightness(0.9);
+    color: #fff;
+}
+
+.card {
+    animation: fadeScale .6s ease-in-out;
+}
+
+@keyframes fadeScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+</style>
+{% endblock %}
